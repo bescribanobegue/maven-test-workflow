@@ -21,6 +21,14 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: 'https://sonarcloud.io/'
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=bescribanobegue_${{ github.event.repository.name }} -Dsonar.organization=bescribanobegue -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+      - name: SonarQube Quality Gate check
+        id: sonarqube-quality-gate-check
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_HOST_URL: https://sonarcloud.io/
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       # - name: Build
       #   run: mvn compile -DskipTests
       # - name: Test
