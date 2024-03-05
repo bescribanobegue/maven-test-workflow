@@ -24,7 +24,7 @@ jobs:
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar |
           -Dsonar.projectKey=${{ github.event.actor.login }}_${{ github.event.repository.name }} |
           -Dsonar.organization=${{ github.event.actor.login }} |
-          -Dsonar.host.url=${{ SONAR_HOST_URL }}
+          -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
       # - name: Build
       #   run: mvn compile -DskipTests
       # - name: Test
