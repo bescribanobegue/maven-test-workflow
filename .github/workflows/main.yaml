@@ -2,7 +2,11 @@ name: main
 on:
   push:
     branches: 
+    # - main
     - 'feature/**'
+  pull_request:
+    types: [opened, reopened, edited, auto_merge_enabled]
+
 jobs:
   nodejs:
     if: ${{ contains(github.event.repository.name, 'maven') }}
